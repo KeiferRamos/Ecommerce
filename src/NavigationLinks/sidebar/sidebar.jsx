@@ -57,10 +57,10 @@ const links = [
 function SideBar() {
   return (
     <div className="sidebar">
-      {links.map((link) => {
+      {links.map((link, i) => {
         const { logo, name, button } = link;
         return (
-          <div className="links">
+          <div className="links" key={i}>
             <span>{logo}</span>
             <div className="items">
               <p>{name}</p>

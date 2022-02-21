@@ -90,7 +90,9 @@
 }
 
 @media (max-height: 740px) {
-  .sidebar {
-    color: #fff;
+  .sidebar > .links {
+    height: 40px;
+    margin: 5px 0;
+    font-size: 15px;
   }
 }
