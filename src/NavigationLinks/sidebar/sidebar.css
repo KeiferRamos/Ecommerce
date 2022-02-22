@@ -6,60 +6,91 @@
 }
 
 .sidebar {
-  width: 300px;
+  width: 80px;
   height: 100vh;
   padding: 10px;
   background: var(--lightmode);
   box-shadow: var(--light-shadow);
   position: relative;
   box-sizing: border-box;
+  transition: width 0.7s;
+  overflow: hidden;
 }
 
-.sidebar > .links {
-  width: 100%;
-  height: 60px;
-  margin: 10px 0;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  box-sizing: border-box;
+.minimize {
+  width: 360px;
+}
+
+.sidebar > .main-container {
   position: relative;
-  text-align: center;
-  font-size: 20px;
-  transition: 0.7s;
-  cursor: pointer;
-}
 
-.items {
+  width: 100%;
+  margin-top: 10px;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding-right: 10px;
-  width: calc(100% - 60px);
-}
-
-.sidebar > .links:not(:nth-child(5), :first-child):hover {
-  transform: translateY(5px);
-}
-
-.sidebar > .links:first-child {
-  border-bottom: 2px solid #bebebe;
-}
-
-.sidebar > .links:not(:first-child) {
+  flex-wrap: wrap;
+  box-sizing: border-box;
   background: var(--lightmode);
   box-shadow: var(--light-shadow);
 }
 
-.sidebar .links > span {
-  position: absolute;
+.items-container {
+  position: relative;
+  width: 100%;
+  display: none;
+  transition: all 0.7s;
+}
+
+.show {
+  display: block;
+}
+
+.close {
+  display: none;
+}
+
+.sidebar .main-container > .links,
+.item-links {
+  width: calc(100% - 20px);
+  height: 60px;
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+  margin: 10px;
+}
+
+.sidebar .main-container .items-container > .item-links {
+  background: var(--lightmode);
+  box-shadow: var(--light-shadow);
+  transition: 0.8s;
+}
+
+.main-container .items-container > .item-links:hover {
+  transform: translateY(5px);
+}
+
+.sidebar .main-container > .links {
+  padding-left: 70px;
+  margin: 0;
+  justify-content: space-between;
+}
+
+.toggle {
   width: 60px;
   height: 60px;
-  font-size: 25px;
   display: grid;
   place-items: center;
+  border: none;
+  background: none;
+}
+
+.sidebar .main-container > .logo {
+  position: absolute;
   top: 0;
   left: 0;
+  width: 60px;
+  height: 60px;
+  display: grid;
+  place-items: center;
 }
 
 .profile {
@@ -74,25 +105,15 @@
   box-shadow: var(--light-shadow);
 }
 
+.resize {
+  height: 60px;
+}
+
 .profile > img {
-  width: 80px;
+  width: 60px;
 }
 
 .profile > .info {
   margin-top: auto;
   padding-left: 5px;
-}
-
-@media (max-width: 500px) {
-  .sidebar {
-    width: 100%;
-  }
-}
-
-@media (max-height: 740px) {
-  .sidebar > .links {
-    height: 40px;
-    margin: 5px 0;
-    font-size: 15px;
-  }
 }

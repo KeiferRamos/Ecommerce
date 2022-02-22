@@ -26,4 +26,4 @@ export function AppProvider({ children }) {
   );
 }
 
-export default () => useContext(EcommerceContext);
+export const UseGlobalContext = () => useContext(EcommerceContext);

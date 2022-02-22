@@ -1,80 +1,59 @@
-import React from "react";
-import { FcBusinessman, FcExpand } from "react-icons/fc";
+import React, { useEffect, useState } from "react";
+import { links } from "../../main/API";
 import "../sidebar/sidebar.css";
-
-const links = [
-  {
-    logo: (
-      <img src="https://img.icons8.com/dusk/50/000000/small-business.png" />
-    ),
-    name: "ShopOnClick",
-  },
-  {
-    logo: <img src="https://img.icons8.com/dusk/25/000000/super-mario.png" />,
-    name: "edit profile",
-  },
-  {
-    logo: (
-      <img src="https://img.icons8.com/office/25/000000/bookmark-ribbon--v1.png" />
-    ),
-    name: "saved",
-  },
-  {
-    logo: <img src="https://img.icons8.com/dusk/25/000000/packaging.png" />,
-    name: "voucher",
-  },
-  {
-    logo: (
-      <img src="https://img.icons8.com/dusk/25/000000/shopping-bag--v1.png" />
-    ),
-    name: "products",
-    button: <FcExpand />,
-    items: [
-      {
-        logo: <img src="https://img.icons8.com/dusk/64/000000/t-shirt.png" />,
-        name: "clothing",
-      },
-      {
-        logo: <img src="https://img.icons8.com/dusk/64/000000/t-shirt.png" />,
-        name: "clothing",
-      },
-    ],
-  },
-  {
-    logo: <img src="https://img.icons8.com/dusk/25/000000/shopping-cart.png" />,
-    name: "cart",
-  },
-  {
-    logo: <img src="https://img.icons8.com/dusk/20/000000/left.png" />,
-    name: "sign-out",
-  },
-  {
-    logo: <img src="https://img.icons8.com/office/25/000000/settings.png" />,
-    name: "settings",
-  },
-];
+import Functionality from "./functionality";
 
 function SideBar() {
+  const { toggled, showSidebar, setItem, index } = Functionality();
+  const [width, setWidth] = useState(0);
+
+  useEffect(() => {
+    setWidth(window.innerWidth);
+  });
+
   return (
-    <div className="sidebar">
+    <div className={`${toggled ? "minimize" : ""} sidebar`}>
       {links.map((link, i) => {
-        const { logo, name, button } = link;
+        const { logo, name, button, items } = link;
         return (
-          <div className="links" key={i}>
-            <span>{logo}</span>
-            <div className="items">
+          <div className="main-container" key={i}>
+            <span className="logo" onClick={() => i == 0 && showSidebar()}>
+              {logo}
+            </span>
+            <div className="links" key={i}>
               <p>{name}</p>
-              {button}
+              <button
+                className="toggle"
+                onClick={() => (i == 0 ? showSidebar() : setItem(i))}
+              >
+                {i == 0 ? button : button[index == i ? 1 : 0]}
+              </button>
+            </div>
+            <div className={`${index == i ? "show" : ""} items-container`}>
+              {items &&
+                items.map((item, i) => {
+                  const { logo, name } = item;
+                  return (
+                    <div className="item-links" key={i}>
+                      <span className="item-logo">{logo}</span>
+                      <div className="item-btn">
+                        <p>{name}</p>
+                      </div>
+                    </div>
+                  );
+                })}
             </div>
           </div>
         );
       })}
-      <div className="profile">
+      <div className={`${!toggled ? "resize " : ""}profile`}>
         <img src={`https://avatars.dicebear.com/api/avataaars/male/.svg?`} />
-        <div className="info">
-          <p>keifer ramos</p>
-          <p>krramos@gmail.com</p>
-        </div>
+        {toggled && (
+          <div className="info">
+            <p>keifer ramos</p>
+            <p>krramos@gmail.com</p>
+          </div>
+        )}
       </div>
     </div>
   );
