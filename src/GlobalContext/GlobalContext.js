@@ -3,6 +3,14 @@ import React, { createContext, useContext, useEffect, useState } from "react";
 const EcommerceContext = createContext([]);
 
 export function AppProvider({ children }) {
+  const [width, setWidth] = useState(null);
+  const getWidth = () => setWidth(window.innerWidth);
+
+  useEffect(() => {
+    window.addEventListener("resize", getWidth);
+    return () => window.removeEventListener("resize", getWidth);
+  }, [width]);
+
   const [users, setUsers] = useState(() => {
     let usersData = localStorage.getItem("usersData");
     return usersData ? JSON.parse(usersData) : [];
@@ -19,7 +27,7 @@ export function AppProvider({ children }) {
 
   return (
     <EcommerceContext.Provider
-      value={{ users, setUsers, activeUser, setActiveUser }}
+      value={{ users, setUsers, activeUser, setActiveUser, width }}
     >
       {children}
     </EcommerceContext.Provider>

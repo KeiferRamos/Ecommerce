@@ -1,0 +1,102 @@
+:root {
+  --lightmode: #e0e0e0;
+  --darkmode: #000308;
+  --light-shadow: 5px 5px 10px #bebebe, -5px -5px 10px #ffffff;
+  --dark-shadow: 5px 5px 10px #060911, -5px -5px 10px #162545;
+}
+
+.nav-bar {
+  position: relative;
+  box-sizing: border-box;
+  top: 0;
+  width: 100%;
+  display: grid;
+  grid-template-rows: 100px 1fr;
+  background: var(--lightmode);
+  box-shadow: var(--light-shadow);
+}
+
+.minimize {
+  height: 100px;
+  overflow: hidden;
+}
+
+.nav-bar > .header {
+  height: 100px;
+  padding: 0 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--lightmode);
+  box-shadow: var(--light-shadow);
+}
+
+.nav-bar .header > .brand-name {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.nav-bar > .links {
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.nav-bar .links > .link {
+  width: 100%;
+  margin: 10px 0;
+  background: var(--lightmode);
+  box-shadow: var(--light-shadow);
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+  justify-content: flex-end;
+}
+
+.nav-bar .links .link > .logo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 60px;
+  height: 60px;
+  display: grid;
+  place-items: center;
+}
+
+.nav-bar .links .link > .item {
+  width: calc(100% - 60px);
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-right: 10px;
+}
+
+.nav-bar .links .link .item > .item-btn {
+  border: none;
+  background: none;
+  margin-right: 5px;
+}
+
+.nav-bar .links .link > .items {
+  width: 100%;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 5px;
+  padding: 0 10px;
+  background: var(--lightmode);
+  box-shadow: var(--light-shadow);
+  transition: 0.8s;
+}
+
+.nav-bar .links .link > .items:hover {
+  transform: translateY(5px);
+}
+
+.closed {
+  height: 0;
+  overflow: hidden;
+}

@@ -17,13 +17,8 @@
   overflow: hidden;
 }
 
-.minimize {
-  width: 360px;
-}
-
 .sidebar > .main-container {
   position: relative;
-
   width: 100%;
   margin-top: 10px;
   display: flex;
@@ -44,8 +39,13 @@
   display: block;
 }
 
-.close {
-  display: none;
+.open {
+  width: 280px;
+}
+
+.closed {
+  width: 0%;
+  padding: 0;
 }
 
 .sidebar .main-container > .links,

@@ -1,18 +1,23 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
+import { UseGlobalContext } from "../../GlobalContext/GlobalContext";
 import { links } from "../../main/API";
 import "../sidebar/sidebar.css";
 import Functionality from "./functionality";
 
 function SideBar() {
-  const { toggled, showSidebar, setItem, index } = Functionality();
-  const [width, setWidth] = useState(0);
+  const { toggled, showSidebar, setItem, index, setToggled, setIndex } =
+    Functionality();
+  const { width } = UseGlobalContext();
 
   useEffect(() => {
-    setWidth(window.innerWidth);
-  });
+    if (width < 700) {
+      setToggled(false);
+      setIndex(null);
+    }
+  }, [width]);
 
   return (
-    <div className={`${toggled ? "minimize" : ""} sidebar`}>
+    <div className={`${width <= 700 ? "closed" : toggled && "open"} sidebar`}>
       {links.map((link, i) => {
         const { logo, name, button, items } = link;
         return (
