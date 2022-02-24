@@ -10,9 +10,14 @@
 body {
   height: 100vh;
   width: 100%;
-  background-color: #e0e0e0;
+  background: url(https://cdn.wallpapersafari.com/97/31/v7u9ga.jpg);
 }
 
 ::-webkit-scrollbar {
   display: none;
+}
+
+.global-container {
+  width: 100%;
+  display: grid;
 }

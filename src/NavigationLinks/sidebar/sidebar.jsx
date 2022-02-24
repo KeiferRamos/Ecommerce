@@ -7,7 +7,7 @@ import Functionality from "./functionality";
 function SideBar() {
   const { toggled, showSidebar, setItem, index, setToggled, setIndex } =
     Functionality();
-  const { width } = UseGlobalContext();
+  const { width, activeUser } = UseGlobalContext();
 
   useEffect(() => {
     if (width < 700) {
@@ -53,10 +53,10 @@ function SideBar() {
       })}
       <div className={`${!toggled ? "resize " : ""}profile`}>
         <img src={`https://avatars.dicebear.com/api/avataaars/male/.svg?`} />
-        {toggled && (
+        {toggled && activeUser && (
           <div className="info">
-            <p>keifer ramos</p>
-            <p>krramos@gmail.com</p>
+            <p>{activeUser.username}</p>
+            <p>{activeUser.email}</p>
           </div>
         )}
       </div>

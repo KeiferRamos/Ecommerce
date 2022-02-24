@@ -20,7 +20,7 @@ function Navbar() {
   return (
     <div
       className={`${
-        width > 700 ? "closed" : toggled ? "" : "minimize"
+        width >= 700 ? "closed" : toggled ? "" : "minimize"
       } nav-bar`}
     >
       <div className="header">

@@ -73,3 +73,24 @@ export const links = [
     ],
   },
 ];
+
+export const socialMedias =  [
+  {
+    logo: <img src="https://img.icons8.com/dusk/44/000000/github.png" />,
+    name: "TengenSama123",
+  },
+  {
+    logo: <img src="https://img.icons8.com/dusk/44/000000/facebook--v1.png" />,
+    name: "Keifer Ramos",
+  },
+  {
+    logo: <img src="https://img.icons8.com/dusk/44/000000/youtube-play.png" />,
+    name: "Keifer The Blogger",
+  },
+  {
+    logo: (
+      <img src="https://img.icons8.com/dusk/44/000000/instagram-new--v1.png" />
+    ),
+    name: "Keifer Photos",
+  },
+]

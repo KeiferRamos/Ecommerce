@@ -14,6 +14,7 @@
   grid-template-rows: 100px 1fr;
   background: var(--lightmode);
   box-shadow: var(--light-shadow);
+  transition: 0.7s;
 }
 
 .minimize {
