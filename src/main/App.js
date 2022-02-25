@@ -8,6 +8,11 @@ import { Routes, Route } from "react-router-dom";
 import Foods from "../products/foods/Foods";
 import Clothings from "../products/clothings/Clothings";
 import Drinks from "../products/drinks/Drinks";
+import Profile from "../Profile/Profile";
+import Cart from "../Others/Cart/Cart";
+import Voucher from "../Others/Voucher/Voucher";
+import Home from "../Home/Home";
+
 function App() {
   const { activeUser, width } = UseGlobalContext();
   return (
@@ -19,9 +24,14 @@ function App() {
           {width >= 700 ? <SideBar /> : <Navbar />}
           <div className="routes">
             <Routes>
-              <Route path="/Ecommerce" element={<Foods />} />
+              <Route path="/Ecommerce" element={<Home />} />
+              <Route path="/Ecommerce/Foods" element={<Foods />} />
               <Route path="/Ecommerce/Clothings" element={<Clothings />} />
               <Route path="/Ecommerce/Drinks" element={<Drinks />} />
+              <Route path="/Ecommerce/Drinks" element={<Drinks />} />
+              <Route path="/Ecommerce/Profile" element={<Profile />} />
+              <Route path="/Ecommerce/Cart" element={<Cart />} />
+              <Route path="/Ecommerce/Voucher" element={<Voucher />} />
             </Routes>
           </div>
         </div>

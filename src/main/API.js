@@ -17,12 +17,14 @@ export const links = [
       {
         logo: <img src="https://img.icons8.com/dusk/25/000000/discount.png" />,
         name: "voucher",
+        link: "/Ecommerce/Voucher",
       },
       {
         logo: (
           <img src="https://img.icons8.com/dusk/25/000000/shopping-cart.png" />
         ),
         name: "cart",
+        link: "/Ecommerce/Cart",
       },
     ],
   },
@@ -68,6 +70,7 @@ export const links = [
           <img src="https://img.icons8.com/dusk/25/000000/super-mario.png" />
         ),
         name: "edit profile",
+        link: "/Ecommerce/Profile",
       },
       {
         logo: <img src="https://img.icons8.com/dusk/20/000000/left.png" />,
