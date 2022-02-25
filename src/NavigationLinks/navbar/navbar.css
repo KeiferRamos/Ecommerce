@@ -6,15 +6,16 @@
 }
 
 .nav-bar {
-  position: relative;
+  position: fixed;
   box-sizing: border-box;
   top: 0;
   width: 100%;
+  height: 100vh;
   display: grid;
   grid-template-rows: 100px 1fr;
   background: var(--lightmode);
-  box-shadow: var(--light-shadow);
-  transition: 0.7s;
+  transition: 0.9s;
+  box-sizing: border-box;
 }
 
 .minimize {
@@ -38,13 +39,21 @@
   gap: 0.5rem;
 }
 
-.nav-bar > .links {
+.items-link {
   width: 100%;
   padding: 10px;
   box-sizing: border-box;
+  transform: translateY(-20px);
+  opacity: 0;
+  transition: 0.9s;
 }
 
-.nav-bar .links > .link {
+.show {
+  opacity: 1;
+  transform: translateY(0px);
+}
+
+.nav-bar .items-link > .link {
   width: 100%;
   margin: 10px 0;
   background: var(--lightmode);
@@ -55,7 +64,7 @@
   justify-content: flex-end;
 }
 
-.nav-bar .links .link > .logo {
+.nav-bar .items-link .link > .logo {
   position: absolute;
   top: 0;
   left: 0;
@@ -65,7 +74,7 @@
   place-items: center;
 }
 
-.nav-bar .links .link > .item {
+.nav-bar .items-link .link > .item {
   width: calc(100% - 60px);
   height: 60px;
   display: flex;
@@ -74,13 +83,13 @@
   padding-right: 10px;
 }
 
-.nav-bar .links .link .item > .item-btn {
+.nav-bar .items-link .link .item > .item-btn {
   border: none;
   background: none;
   margin-right: 5px;
 }
 
-.nav-bar .links .link > .items {
+.nav-bar .items-link .link > .items {
   width: 100%;
   height: 60px;
   display: flex;
@@ -93,8 +102,13 @@
   transition: 0.8s;
 }
 
-.nav-bar .links .link > .items:hover {
+.nav-bar .items-link .link > .items:hover {
   transform: translateY(5px);
+}
+
+.nav-bar > .profile {
+  width: calc(100% - 20px);
+  margin: 10px;
 }
 
 .closed {

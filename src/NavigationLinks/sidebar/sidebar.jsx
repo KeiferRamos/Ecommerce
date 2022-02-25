@@ -1,20 +1,14 @@
 import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { UseGlobalContext } from "../../GlobalContext/GlobalContext";
 import { links } from "../../main/API";
 import "../sidebar/sidebar.css";
 import Functionality from "./functionality";
 
 function SideBar() {
-  const { toggled, showSidebar, setItem, index, setToggled, setIndex } =
-    Functionality();
-  const { width, activeUser } = UseGlobalContext();
-
-  useEffect(() => {
-    if (width < 700) {
-      setToggled(false);
-      setIndex(null);
-    }
-  }, [width]);
+  const { toggled, showSidebar, setItem, index } = Functionality();
+  const { width, activeUser, setActiveUser } = UseGlobalContext();
+  const nav = useNavigate();
 
   return (
     <div className={`${width <= 700 ? "closed" : toggled && "open"} sidebar`}>
@@ -37,9 +31,15 @@ function SideBar() {
             <div className={`${index == i ? "show" : ""} items-container`}>
               {items &&
                 items.map((item, i) => {
-                  const { logo, name } = item;
+                  const { logo, name, link } = item;
                   return (
-                    <div className="item-links" key={i}>
+                    <div
+                      className="item-links"
+                      key={i}
+                      onClick={() => {
+                        name == "sign-out" ? setActiveUser({}) : nav(link);
+                      }}
+                    >
                       <span className="item-logo">{logo}</span>
                       <div className="item-btn">
                         <p>{name}</p>
@@ -52,7 +52,11 @@ function SideBar() {
         );
       })}
       <div className={`${!toggled ? "resize " : ""}profile`}>
-        <img src={`https://avatars.dicebear.com/api/avataaars/male/.svg?`} />
+        <img
+          src={`https://avatars.dicebear.com/api/initials/${
+            activeUser && activeUser.username
+          }/.svg?background=%354269`}
+        />
         {toggled && activeUser && (
           <div className="info">
             <p>{activeUser.username}</p>

@@ -24,7 +24,6 @@ export function AppProvider({ children }) {
     localStorage.setItem("usersData", JSON.stringify(users));
     localStorage.setItem("activeData", JSON.stringify(activeUser));
   }, [users, activeUser]);
-
   return (
     <EcommerceContext.Provider
       value={{ users, setUsers, activeUser, setActiveUser, width }}

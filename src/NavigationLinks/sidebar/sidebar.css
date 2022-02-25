@@ -10,7 +10,6 @@
   height: 100vh;
   padding: 10px;
   background: var(--lightmode);
-  box-shadow: var(--light-shadow);
   position: relative;
   box-sizing: border-box;
   transition: width 0.7s;

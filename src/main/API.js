@@ -39,16 +39,19 @@ export const links = [
       {
         logo: <img src="https://img.icons8.com/dusk/25/000000/cocktail.png" />,
         name: "drinks",
+        link: "/Ecommerce/Drinks",
       },
       {
         logo: <img src="https://img.icons8.com/dusk/25/000000/t-shirt.png" />,
         name: "clothing",
+        link: "/Ecommerce/Clothings",
       },
       {
         logo: (
           <img src="https://img.icons8.com/dusk/25/000000/strawberry.png" />
         ),
         name: "foods",
+        link: "/Ecommerce/Foods",
       },
     ],
   },
@@ -61,20 +64,20 @@ export const links = [
     ],
     items: [
       {
-        logo: <img src="https://img.icons8.com/dusk/20/000000/left.png" />,
-        name: "sign-out",
-      },
-      {
         logo: (
           <img src="https://img.icons8.com/dusk/25/000000/super-mario.png" />
         ),
         name: "edit profile",
       },
+      {
+        logo: <img src="https://img.icons8.com/dusk/20/000000/left.png" />,
+        name: "sign-out",
+      },
     ],
   },
 ];
 
-export const socialMedias =  [
+export const socialMedias = [
   {
     logo: <img src="https://img.icons8.com/dusk/44/000000/github.png" />,
     name: "TengenSama123",
@@ -93,4 +96,4 @@ export const socialMedias =  [
     ),
     name: "Keifer Photos",
   },
-]
+];

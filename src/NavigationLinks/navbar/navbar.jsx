@@ -2,13 +2,15 @@ import React, { useState, useEffect } from "react";
 import { links } from "../../main/API";
 import { UseGlobalContext } from "../../GlobalContext/GlobalContext";
 import "./navbar.css";
+import { useNavigate } from "react-router-dom";
 
 function Navbar() {
   const { logo, name, button } = links[0];
   const items = links.filter((el, i) => i > 0);
-  const { width } = UseGlobalContext();
+  const { width, setActiveUser, activeUser } = UseGlobalContext();
   const [index, setIndex] = useState(null);
   const [toggled, setToggled] = useState(false);
+  const nav = useNavigate();
 
   useEffect(() => {
     if (width > 700) {
@@ -16,6 +18,11 @@ function Navbar() {
       setToggled(false);
     }
   }, [width]);
+
+  const navigate = (link) => {
+    nav(link);
+    setToggled(false);
+  };
 
   return (
     <div
@@ -38,7 +45,7 @@ function Navbar() {
           {button}
         </div>
       </div>
-      <div className="links">
+      <div className={`items-link ${toggled ? "show" : ""}`}>
         {items.map((item, i) => {
           const { logo, name, button, items } = item;
           return (
@@ -55,10 +62,16 @@ function Navbar() {
               </div>
               {i == index &&
                 items.map((item) => {
+                  const { name, logo, link } = item;
                   return (
-                    <div className="items">
-                      <div className="item-logo">{item.logo}</div>
-                      <div className="item-name">{item.name}</div>
+                    <div
+                      className="items"
+                      onClick={() => {
+                        name == "sign-out" ? setActiveUser({}) : navigate(link);
+                      }}
+                    >
+                      <div className="item-logo">{logo}</div>
+                      <div className="item-name">{name}</div>
                     </div>
                   );
                 })}
@@ -66,6 +79,19 @@ function Navbar() {
           );
         })}
       </div>
+      {toggled && (
+        <div className="profile">
+          <img
+            src={`https://avatars.dicebear.com/api/initials/${
+              activeUser && activeUser.username
+            }/.svg?background=%354269`}
+          />
+          <div className="info">
+            <p>{activeUser.username}</p>
+            <p>{activeUser.email}</p>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

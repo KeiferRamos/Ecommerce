@@ -4,17 +4,26 @@ import Navbar from "../NavigationLinks/navbar/navbar";
 import UserForm from "../UserForm/UserForm";
 import "../main/style.css";
 import { UseGlobalContext } from "../GlobalContext/GlobalContext";
-
+import { Routes, Route } from "react-router-dom";
+import Foods from "../products/foods/Foods";
+import Clothings from "../products/clothings/Clothings";
+import Drinks from "../products/drinks/Drinks";
 function App() {
-  const { activeUser } = UseGlobalContext();
+  const { activeUser, width } = UseGlobalContext();
   return (
     <div className="global-container">
       {!activeUser.email ? (
         <UserForm />
       ) : (
-        <div className="links">
-          <Navbar />
-          <SideBar />
+        <div className={`${width >= 700 ? "side" : "nav"} links`}>
+          {width >= 700 ? <SideBar /> : <Navbar />}
+          <div className="routes">
+            <Routes>
+              <Route path="/Ecommerce" element={<Foods />} />
+              <Route path="/Ecommerce/Clothings" element={<Clothings />} />
+              <Route path="/Ecommerce/Drinks" element={<Drinks />} />
+            </Routes>
+          </div>
         </div>
       )}
     </div>

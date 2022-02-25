@@ -1,8 +1,11 @@
 import ReactDOM from "react-dom";
+import { BrowserRouter } from "react-router-dom";
 import { AppProvider } from "./GlobalContext/GlobalContext";
 import App from "./main/App";
 
 ReactDOM.render(
-  <AppProvider children={<App />} />,
+  <BrowserRouter>
+    <AppProvider children={<App />} />
+  </BrowserRouter>,
   document.getElementById("root")
 );
