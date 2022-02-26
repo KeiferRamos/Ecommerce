@@ -1,14 +1,15 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { UseGlobalContext } from "../../GlobalContext/GlobalContext";
+import UseModal from "../../Custom Hooks/UseModal";
 import { links } from "../../main/API";
 import "../sidebar/sidebar.css";
 import Functionality from "./functionality";
 
 function SideBar() {
-  const { toggled, showSidebar, setItem, index } = Functionality();
+  const { toggled, showSidebar, setItem, index, navigate, showModal, signOut } =
+    Functionality();
   const { width, activeUser, setActiveUser } = UseGlobalContext();
-  const nav = useNavigate();
 
   return (
     <div className={`${width <= 700 ? "closed" : toggled && "open"} sidebar`}>
@@ -37,7 +38,7 @@ function SideBar() {
                       className="item-links"
                       key={i}
                       onClick={() => {
-                        name == "sign-out" ? setActiveUser({}) : nav(link);
+                        name == "sign-out" ? signOut() : navigate(link);
                       }}
                     >
                       <span className="item-logo">{logo}</span>
@@ -64,6 +65,7 @@ function SideBar() {
           </div>
         )}
       </div>
+      {showModal && <UseModal func={signOut} />}
     </div>
   );
 }

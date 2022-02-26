@@ -1,0 +1,21 @@
+.sign-out > div {
+  width: 350px;
+  height: 150px;
+  border-radius: 10px;
+  background: #8bb1be;
+  padding-top: 40px;
+}
+
+.sign-out div > button {
+  border: none;
+  margin: 5px;
+  margin-top: 20px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: #8bb1be;
+}
+
+.warn {
+  border: 1px solid blue;
+  border-radius: 10px;
+}

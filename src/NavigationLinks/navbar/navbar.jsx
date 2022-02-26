@@ -3,6 +3,8 @@ import { links } from "../../main/API";
 import { UseGlobalContext } from "../../GlobalContext/GlobalContext";
 import "./navbar.css";
 import { useNavigate } from "react-router-dom";
+import Functionality from "../sidebar/functionality";
+import UseModal from "../../Custom Hooks/UseModal";
 
 function Navbar() {
   const { logo, name, button } = links[0];
@@ -10,6 +12,7 @@ function Navbar() {
   const { width, setActiveUser, activeUser } = UseGlobalContext();
   const [index, setIndex] = useState(null);
   const [toggled, setToggled] = useState(false);
+  const { showModal, signOut } = Functionality();
   const nav = useNavigate();
 
   useEffect(() => {
@@ -67,7 +70,7 @@ function Navbar() {
                     <div
                       className="items"
                       onClick={() => {
-                        name == "sign-out" ? setActiveUser({}) : navigate(link);
+                        name == "sign-out" ? signOut() : navigate(link);
                       }}
                     >
                       <div className="item-logo">{logo}</div>
@@ -92,6 +95,7 @@ function Navbar() {
           </div>
         </div>
       )}
+      {showModal && <UseModal func={signOut} />}
     </div>
   );
 }
