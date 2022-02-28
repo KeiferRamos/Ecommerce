@@ -26,7 +26,7 @@ const Functionality = () => {
   };
 
   useEffect(() => {
-    if (width < 700) {
+    if (width <= 700) {
       setToggled(false);
       setIndex(null);
     }

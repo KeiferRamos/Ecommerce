@@ -9,14 +9,14 @@ import UseModal from "../../Custom Hooks/UseModal";
 function Navbar() {
   const { logo, name, button } = links[0];
   const items = links.filter((el, i) => i > 0);
-  const { width, setActiveUser, activeUser } = UseGlobalContext();
+  const { width, activeUser } = UseGlobalContext();
   const [index, setIndex] = useState(null);
   const [toggled, setToggled] = useState(false);
   const { showModal, signOut } = Functionality();
   const nav = useNavigate();
 
   useEffect(() => {
-    if (width > 700) {
+    if (width >= 700) {
       setIndex(null);
       setToggled(false);
     }
@@ -52,7 +52,7 @@ function Navbar() {
         {items.map((item, i) => {
           const { logo, name, button, items } = item;
           return (
-            <div className="link">
+            <div className="link" key={i}>
               <span className="logo">{logo}</span>
               <div className="item">
                 <div className="name">{name}</div>

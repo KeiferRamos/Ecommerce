@@ -7,11 +7,12 @@ import { UseGlobalContext } from "../GlobalContext/GlobalContext";
 import { Routes, Route } from "react-router-dom";
 import Foods from "../products/foods/Foods";
 import Clothings from "../products/clothings/Clothings";
-import Drinks from "../products/drinks/Drinks";
+import Drinks from "../products/Household/HouseHold";
 import Profile from "../Profile/Profile";
 import Cart from "../Others/Cart/Cart";
 import Voucher from "../Others/Voucher/Voucher";
 import Home from "../Home/Home";
+import HouseHold from "../products/Household/HouseHold";
 
 function App() {
   const { activeUser, width } = UseGlobalContext();
@@ -27,8 +28,7 @@ function App() {
               <Route path="/Ecommerce" element={<Home />} />
               <Route path="/Ecommerce/Foods" element={<Foods />} />
               <Route path="/Ecommerce/Clothings" element={<Clothings />} />
-              <Route path="/Ecommerce/Drinks" element={<Drinks />} />
-              <Route path="/Ecommerce/Drinks" element={<Drinks />} />
+              <Route path="/Ecommerce/HouseHold" element={<HouseHold />} />
               <Route path="/Ecommerce/Profile" element={<Profile />} />
               <Route path="/Ecommerce/Cart" element={<Cart />} />
               <Route path="/Ecommerce/Voucher" element={<Voucher />} />

@@ -1,7 +1,5 @@
-import React from "react";
+import { clothings } from "../../main/API";
+import UseMenu from "../../Custom Hooks/UseMenu";
 
-function Clothings() {
-  return <div className="Clothings">Clothings</div>;
-}
-
-export default Clothings;
+const Clothing = () => <UseMenu product={clothings} />;
+export default Clothing;

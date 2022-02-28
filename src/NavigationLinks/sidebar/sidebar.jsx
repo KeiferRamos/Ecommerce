@@ -9,7 +9,7 @@ import Functionality from "./functionality";
 function SideBar() {
   const { toggled, showSidebar, setItem, index, navigate, showModal, signOut } =
     Functionality();
-  const { width, activeUser, setActiveUser } = UseGlobalContext();
+  const { width, activeUser } = UseGlobalContext();
 
   return (
     <div className={`${width <= 700 ? "closed" : toggled && "open"} sidebar`}>
