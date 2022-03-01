@@ -9,7 +9,7 @@ import UseModal from "../../Custom Hooks/UseModal";
 function Navbar() {
   const { logo, name, button } = links[0];
   const items = links.filter((el, i) => i > 0);
-  const { width, activeUser } = UseGlobalContext();
+  const { width, activeUser, isDark, setIsDark } = UseGlobalContext();
   const [index, setIndex] = useState(null);
   const [toggled, setToggled] = useState(false);
   const { showModal, signOut } = Functionality();
@@ -32,8 +32,18 @@ function Navbar() {
       className={`${
         width >= 700 ? "closed" : toggled ? "" : "minimize"
       } nav-bar`}
+      style={{
+        color: `${isDark ? "#fff" : "#000"}`,
+        background: `var(--${isDark ? "dark" : "light"}mode)`,
+      }}
     >
-      <div className="header">
+      <div
+        className="header"
+        style={{
+          background: `var(--${isDark ? "dark" : "light"}mode)`,
+          boxShadow: `var(--${isDark ? "dark" : "light"}-shadow)`,
+        }}
+      >
         <div className="brand-name">
           <span>{logo}</span>
           <p>{name}</p>
@@ -52,7 +62,14 @@ function Navbar() {
         {items.map((item, i) => {
           const { logo, name, button, items } = item;
           return (
-            <div className="link" key={i}>
+            <div
+              className="link"
+              key={i}
+              style={{
+                background: `var(--${isDark ? "dark" : "light"}mode)`,
+                boxShadow: `var(--${isDark ? "dark" : "light"}-shadow)`,
+              }}
+            >
               <span className="logo">{logo}</span>
               <div className="item">
                 <div className="name">{name}</div>
@@ -71,6 +88,10 @@ function Navbar() {
                       className="items"
                       onClick={() => {
                         name == "sign-out" ? signOut() : navigate(link);
+                      }}
+                      style={{
+                        background: `var(--${isDark ? "dark" : "light"}mode)`,
+                        boxShadow: `var(--${isDark ? "dark" : "light"}-shadow)`,
                       }}
                     >
                       <div className="item-logo">{logo}</div>
@@ -92,6 +113,13 @@ function Navbar() {
           <div className="info">
             <p>{activeUser.username}</p>
             <p>{activeUser.email}</p>
+          </div>
+          <div className="darkmode" onClick={() => setIsDark(!isDark)}>
+            {isDark ? (
+              <img src="https://img.icons8.com/dusk/34/000000/summer.png" />
+            ) : (
+              <img src="https://img.icons8.com/dusk/34/000000/new-moon--v2.png" />
+            )}
           </div>
         </div>
       )}

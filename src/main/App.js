@@ -7,7 +7,6 @@ import { UseGlobalContext } from "../GlobalContext/GlobalContext";
 import { Routes, Route } from "react-router-dom";
 import Foods from "../products/foods/Foods";
 import Clothings from "../products/clothings/Clothings";
-import Drinks from "../products/Household/HouseHold";
 import Profile from "../Profile/Profile";
 import Cart from "../Others/Cart/Cart";
 import Voucher from "../Others/Voucher/Voucher";
@@ -15,9 +14,14 @@ import Home from "../Home/Home";
 import HouseHold from "../products/Household/HouseHold";
 
 function App() {
-  const { activeUser, width } = UseGlobalContext();
+  const { activeUser, width, isDark } = UseGlobalContext();
   return (
-    <div className="global-container">
+    <div
+      className="global-container"
+      style={{
+        background: `url(${require(isDark ? "./dark.jpg" : "./light.jpg")})`,
+      }}
+    >
       {!activeUser.email ? (
         <UserForm />
       ) : (

@@ -1,15 +1,7 @@
-:root {
-  --lightmode: #e0e0e0;
-  --darkmode: #000308;
-  --light-shadow: 5px 5px 10px #bebebe, -5px -5px 10px #ffffff;
-  --dark-shadow: 5px 5px 10px #060911, -5px -5px 10px #162545;
-}
-
 .sidebar {
   width: 80px;
   height: 100vh;
   padding: 10px;
-  background: var(--lightmode);
   position: relative;
   box-sizing: border-box;
   transition: width 0.7s;
@@ -23,8 +15,6 @@
   display: flex;
   flex-wrap: wrap;
   box-sizing: border-box;
-  background: var(--lightmode);
-  box-shadow: var(--light-shadow);
 }
 
 .items-container {
@@ -58,8 +48,6 @@
 }
 
 .sidebar .main-container .items-container > .item-links {
-  background: var(--lightmode);
-  box-shadow: var(--light-shadow);
   transition: 0.8s;
 }
 
@@ -100,8 +88,6 @@
   bottom: 0;
   margin: 10px 0;
   padding: 10px;
-  background: var(--lightmode);
-  box-shadow: var(--light-shadow);
 }
 
 .resize {
@@ -127,4 +113,27 @@
   place-items: center;
   text-align: center;
   color: #fff;
+}
+
+.notif {
+  background: red;
+  position: absolute;
+  display: grid;
+  place-items: center;
+  right: 0;
+  margin-right: 20px;
+  height: 30px;
+  width: 30px;
+  border-radius: 5px;
+  color: #fff;
+}
+
+.darkmode {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 60px;
+  height: 60px;
+  display: grid;
+  place-items: center;
 }

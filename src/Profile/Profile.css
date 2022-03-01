@@ -1,0 +1,75 @@
+.Profile {
+  height: 100vh;
+  width: 100%;
+  display: grid;
+  place-items: center;
+  position: relative;
+}
+
+.Profile > .container {
+  width: 80%;
+  height: 80%;
+  border: 3px solid #bebebe;
+  border-radius: 10px;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.fillup-form {
+  box-sizing: border-box;
+  width: 500px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 10px;
+}
+
+.fillup-form > input {
+  width: 100%;
+  height: 50px;
+  padding: 0 10px;
+  border-radius: 10px;
+  border: none;
+  background: #ceeaec;
+  outline: none;
+}
+
+.additional-form {
+  width: 500px;
+  height: 300px;
+  padding: 10px;
+}
+
+.instruction {
+  margin-top: 20px;
+}
+
+.additional-form .instruction > textarea {
+  resize: none;
+  height: 200px;
+  width: 100%;
+  border-radius: 10px;
+  border: none;
+  background: #ceeaec;
+  outline: none;
+  padding: 10px;
+}
+
+@media (max-width: 700px) {
+  .Profile > .container {
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    border: none;
+  }
+  .fillup-form {
+    width: 100%;
+  }
+  .additional-form {
+    width: 100%;
+  }
+  .additional-form .instruction > textarea {
+    width: 100%;
+  }
+}

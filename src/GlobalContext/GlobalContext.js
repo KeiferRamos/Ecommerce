@@ -3,6 +3,7 @@ import React, { createContext, useContext, useEffect, useState } from "react";
 const EcommerceContext = createContext([]);
 
 export function AppProvider({ children }) {
+  const [isDark, setIsDark] = useState(false);
   const [width, setWidth] = useState(window.innerWidth);
   const getWidth = () => setWidth(window.innerWidth);
 
@@ -26,7 +27,15 @@ export function AppProvider({ children }) {
   }, [users, activeUser]);
   return (
     <EcommerceContext.Provider
-      value={{ users, setUsers, activeUser, setActiveUser, width }}
+      value={{
+        users,
+        setUsers,
+        activeUser,
+        setActiveUser,
+        width,
+        isDark,
+        setIsDark,
+      }}
     >
       {children}
     </EcommerceContext.Provider>
