@@ -108,24 +108,16 @@
   outline: none;
 }
 
-.discount,
-.freeShipping {
+.discount {
   position: absolute;
   top: 0;
+  left: 0;
   padding: 5px;
   margin: 5px;
   display: grid;
   place-items: center;
   background: #f79116;
   border-radius: 10px;
-}
-
-.freeShipping {
-  right: 0;
-}
-
-.discount {
-  left: 0;
 }
 
 @media (max-width: 700px) {

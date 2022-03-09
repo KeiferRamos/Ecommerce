@@ -15,11 +15,6 @@ export const links = [
     ],
     items: [
       {
-        logo: <img src="https://img.icons8.com/dusk/25/000000/discount.png" />,
-        name: "voucher",
-        link: "/Ecommerce/Voucher",
-      },
-      {
         logo: (
           <img src="https://img.icons8.com/dusk/25/000000/shopping-cart.png" />
         ),
@@ -653,6 +648,8 @@ export const foods = [
     isDiscounted: false,
   },
 ];
+
+export default [...clothings, ...foods, ...household];
 
 export const socialMedias = [
   {

@@ -12,6 +12,9 @@ const Functionality = () => {
     username: "",
     password: "",
     confirm: "",
+    cart: [],
+    voucher: [],
+    infos: { name: "", address: "", contact: "" },
   });
 
   const clearInputs = () =>
@@ -20,6 +23,9 @@ const Functionality = () => {
       username: "",
       password: "",
       confirm: "",
+      cart: [],
+      voucher: [],
+      infos: { name: "", address: "", contact: "" },
     });
 
   useEffect(() => {
@@ -61,12 +67,13 @@ const Functionality = () => {
 
   const Login = () => {
     const validEmail = users.find((user) => user.email == account.email);
+    const { email, username, password } = validEmail;
     if (hasAccount) {
       if (validEmail) {
         if (account.password !== validEmail.password) {
           setLabel("wrong pass");
         } else {
-          setActiveUser(validEmail);
+          setActiveUser({ email, username, password });
           clearInputs();
         }
       } else if (!account.email && !account.password) {

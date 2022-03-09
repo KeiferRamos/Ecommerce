@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { UseGlobalContext } from "../GlobalContext/GlobalContext";
 import "./UseMenu.css";
+import UseCartModal from "./UseCartModal";
 
 function UseMenu({ product }) {
   const itemBtns = ["all", ...new Set(product.map((el) => el.category))];
@@ -10,6 +11,8 @@ function UseMenu({ product }) {
   const [isSearching, setIssearching] = useState(false);
   const [index, setIndex] = useState(0);
   const [items, setItems] = useState(product);
+  const [alreadyAdded, setAlreadyAdded] = useState(false);
+  const [text, setText] = useState("already in cart");
   const searchItem = items.filter(
     (item) => item.name.substring(0, search.length) == search
   );
@@ -18,26 +21,22 @@ function UseMenu({ product }) {
     selected == "all" ? item : item.category == selected
   );
 
-  const filterItem = () => {
-    setItems(filteredItem);
-  };
+  const filterItem = () => setItems(filteredItem);
 
-  useEffect(() => {
-    filterItem();
-  }, [selected]);
+  useEffect(() => filterItem(), [selected]);
 
   const sortByDiscount = () => {
     setItems(filteredItem.filter((item) => item.isDiscounted));
-  };
-
-  const sortByFreeShip = () => {
-    setItems(filteredItem.filter((item) => item.freeShipping));
   };
 
   const selectItem = (i, btn) => {
     setIndex(i);
     setSelected(btn);
   };
+
+  const showModal = () => setAlreadyAdded(true);
+  const hideModal = () => setAlreadyAdded(false);
+  const changeText = (changedtext) => setText(changedtext);
 
   return (
     <div className="product" style={{ color: `${isDark ? "#fff" : "#000"}` }}>
@@ -61,9 +60,6 @@ function UseMenu({ product }) {
           />
         </div>
         <div className="promos">
-          <div className="discount-btn" onClick={() => sortByFreeShip()}>
-            <img src="https://img.icons8.com/dusk/30/000000/delivery--v1.png" />
-          </div>
           <div className="free-btn" onClick={() => sortByDiscount()}>
             <img src="https://img.icons8.com/dusk/30/000000/discount.png" />
           </div>
@@ -71,38 +67,58 @@ function UseMenu({ product }) {
       </div>
       <div className="items">
         {(isSearching ? searchItem : items).map((item, i) => {
-          const { name, img, price, isDiscounted, freeShipping } = item;
           return (
-            <div className="product-item" key={i}>
-              <div className="image">{img}</div>
-              <div className="info">
-                <p>{name}</p>
-                <p className="price">
-                  <img src="https://img.icons8.com/dusk/20/000000/cent.png" />
-                  {price}
-                </p>
-                <div className="btns">
-                  <button>Review</button>
-                  <button>Add to cart</button>
-                  <button>buy now</button>
-                </div>
-              </div>
-              {isDiscounted && (
-                <img
-                  className="discount"
-                  src="https://img.icons8.com/dusk/50/000000/discount.png"
-                />
-              )}
-              {freeShipping && (
-                <img
-                  className="freeShipping"
-                  src="https://img.icons8.com/dusk/50/000000/delivery--v1.png"
-                />
-              )}
-            </div>
+            <Items item={item} i={i} func={showModal} changeText={changeText} />
           );
         })}
       </div>
+      {alreadyAdded && <UseCartModal func={hideModal} text={text} />}
+    </div>
+  );
+}
+
+function Items({ item, i, func, changeText }) {
+  const { users, activeUser, setUsers } = UseGlobalContext();
+  const { name, img, price, isDiscounted, freeShipping } = item;
+  const currUser = users.find((user) => user.email == activeUser.email);
+  const AddToCart = () => {
+    if (currUser.cart.includes(name)) {
+      changeText("item already added to cart");
+      func();
+      return;
+    } else {
+      changeText("item added to cart");
+    }
+    func();
+    const addedItem = users.map((user) => {
+      if (currUser == user) {
+        user.cart.push(name);
+        return user;
+      } else {
+        return user;
+      }
+    });
+    setUsers(addedItem);
+  };
+  return (
+    <div className="product-item" key={i}>
+      <div className="image">{img}</div>
+      <div className="info">
+        <p>{name}</p>
+        <p className="price">
+          <img src="https://img.icons8.com/dusk/20/000000/cent.png" />
+          {price}
+        </p>
+        <div className="btns">
+          <button onClick={() => AddToCart()}>Add to cart</button>
+        </div>
+      </div>
+      {isDiscounted && (
+        <img
+          className="discount"
+          src="https://img.icons8.com/dusk/50/000000/discount.png"
+        />
+      )}
     </div>
   );
 }
