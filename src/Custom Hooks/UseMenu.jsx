@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { UseGlobalContext } from "../GlobalContext/GlobalContext";
 import "./UseMenu.css";
 import UseCartModal from "./UseCartModal";
+import Functionality from "../NavigationLinks/sidebar/functionality";
 
 function UseMenu({ product }) {
   const itemBtns = ["all", ...new Set(product.map((el) => el.category))];
@@ -79,8 +80,14 @@ function UseMenu({ product }) {
 
 function Items({ item, i, func, changeText }) {
   const { users, activeUser, setUsers } = UseGlobalContext();
+  const { setCart } = Functionality();
   const { name, img, price, isDiscounted, freeShipping } = item;
   const currUser = users.find((user) => user.email == activeUser.email);
+
+  useEffect(() => {
+    setCart(currUser.cart.length);
+  }, [users]);
+
   const AddToCart = () => {
     if (currUser.cart.includes(name)) {
       changeText("item already added to cart");

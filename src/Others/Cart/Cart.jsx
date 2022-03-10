@@ -3,6 +3,7 @@ import "./Cart.css";
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
 import { UseGlobalContext } from "../../GlobalContext/GlobalContext";
 import items from "../../main/API";
+import { useNavigate } from "react-router-dom";
 
 function Cart() {
   const { users, activeUser, setUsers } = UseGlobalContext();
@@ -11,6 +12,7 @@ function Cart() {
   const userItems = items.filter((item) => currUser.cart.includes(item.name));
   const [hasCheckout, setHasCheckout] = useState(false);
   const [hasConfirm, setHasConfirm] = useState(false);
+  const nav = useNavigate();
 
   const addPrice = (price) => setTotalPrice(totalPrice + price);
   const minusPrice = (price) => setTotalPrice(totalPrice - price);
@@ -19,7 +21,6 @@ function Cart() {
     userItems.forEach((userItem) => {
       setTotalPrice((prevVal) => prevVal + userItem.price);
     });
-    console.log(currUser);
   }, []);
 
   const clearCart = () => {
@@ -60,7 +61,7 @@ function Cart() {
               );
             })}
           </div>
-        ) : (
+        ) : currUser.infos.address ? (
           <div className="checkout">
             <div className="totalPrice">
               <p>{`hello ${currUser.infos.name}`}</p>
@@ -89,6 +90,15 @@ function Cart() {
                 </div>
               </div>
             )}
+          </div>
+        ) : (
+          <div className="notice">
+            <div>
+              <p> please fill up the the form first</p>
+              <button onClick={() => nav("/Ecommerce/Profile")}>
+                click here
+              </button>
+            </div>
           </div>
         )}
       </div>

@@ -1,5 +1,4 @@
-import React, { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 import { UseGlobalContext } from "../../GlobalContext/GlobalContext";
 import UseModal from "../../Custom Hooks/UseModal";
 import { links } from "../../main/API";
@@ -7,10 +6,20 @@ import "../sidebar/sidebar.css";
 import Functionality from "./functionality";
 
 function SideBar() {
-  const { toggled, showSidebar, setItem, index, navigate, showModal, signOut } =
-    Functionality();
+  const {
+    toggled,
+    showSidebar,
+    setItem,
+    index,
+    navigate,
+    showModal,
+    signOut,
+    cart,
+    setCart,
+    clearNotif,
+  } = Functionality();
   const { width, activeUser, isDark, setIsDark } = UseGlobalContext();
-
+  console.log(window.location.href);
   return (
     <div
       className={`${width <= 700 ? "closed" : toggled && "open"} sidebar`}
@@ -50,7 +59,11 @@ function SideBar() {
                     className="item-links"
                     key={i}
                     onClick={() => {
-                      name == "sign-out" ? signOut() : navigate(link);
+                      name == "sign-out"
+                        ? signOut()
+                        : name == "cart"
+                        ? clearNotif(link)
+                        : navigate(link);
                     }}
                     style={{
                       background: `var(--${isDark ? "dark" : "light"}mode)`,
@@ -61,7 +74,13 @@ function SideBar() {
                     <div className="item-btn">
                       <p>{name}</p>
                     </div>
-                    {name == "cart" && <div className="notif">12</div>}
+                    {name == "cart" && cart ? (
+                      <div className="notif" onClick={() => setCart(0)}>
+                        {cart}
+                      </div>
+                    ) : (
+                      ""
+                    )}
                   </div>
                 );
               })}

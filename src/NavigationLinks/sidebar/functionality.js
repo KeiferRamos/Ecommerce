@@ -5,8 +5,10 @@ import { UseGlobalContext } from "../../GlobalContext/GlobalContext";
 const Functionality = () => {
   const [toggled, setToggled] = useState(false);
   const [index, setIndex] = useState(null);
-  const { width } = UseGlobalContext();
+  const { width, users, activeUser } = UseGlobalContext();
+  const currUser = users.find((user) => user.email == activeUser.email);
   const [showModal, setShowModal] = useState(false);
+  const [cart, setCart] = useState(0);
   const nav = useNavigate();
 
   const showSidebar = () => {
@@ -34,6 +36,18 @@ const Functionality = () => {
 
   const setItem = (i) => setIndex(index == i ? null : i);
 
+  const clearNotif = (link) => {
+    setCart(0);
+    nav(link);
+  };
+
+  useEffect(() => {
+    if (window.location.href == "http://localhost:3000/Ecommerce/Cart") {
+      return;
+    }
+    setCart(currUser.cart.length);
+  }, [users]);
+
   return {
     navigate,
     toggled,
@@ -43,6 +57,9 @@ const Functionality = () => {
     setIndex,
     showModal,
     signOut,
+    cart,
+    setCart,
+    clearNotif,
   };
 };
 
